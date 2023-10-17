@@ -1,4 +1,8 @@
-# E2B Data Analysis and OpenAI Integration
+# E2B guides and examples
 
-This repository demonstrates the integration of E2B and OpenAI for data analysis tasks. You can use the E2B package to manage data analysis sessions, upload and download files, and run data analysis code seamlessly.
+
+
+## 1. Build your AI data analyst with E2B
+
+File: Data_analyst_v0.1.py
 
