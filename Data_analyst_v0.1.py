@@ -8,9 +8,6 @@
 # Import everything and start the E2B session
 
 import e2b
-from e2b import DataAnalysis
-
-from e2b.templates.data_analysis import DataAnalysis
 
 
 import openai
@@ -20,8 +17,6 @@ load_dotenv()
 
 
 # Create session variable
-
-session: e2b.Session
 session = e2b.DataAnalysis(env_vars={})
 
 
@@ -34,7 +29,7 @@ file = session.download_file(remote_path)
 
 downloaded_file_in_bytes = session.download_file(remote_path)
 with open("/Users/terezatizkova/Downloads/Air_Quality_Chart.csv", "wb") as f:
-  f.write(downloaded_file_in_bytes)
+  f.write(downloaded_file_in_bytes)   # effectively saving the content of the downloaded file to the chosen file on your local machine
 
   #wb ... opened for writing, "b" indicates that you will work with the file's content as a sequence of binary bytes rather than as text
 
@@ -45,20 +40,21 @@ with open("/Users/terezatizkova/Downloads/Air_Quality_Chart.csv", "wb") as f:
 #session.install_system_packages("name")
 
 
+# Save the generated charts
+
+def handle_new_artifact(artifact):
+    chart_file = artifact.download()
+
 
 # Run the session
 
 session.run_python(
-    code="llm-generated python code",
+    code="print(\"valid code\")",
     on_stdout=print,
     on_stderr=print,
     on_artifact=handle_new_artifact,
 )
 
-# Save the generated charts
-
-def handle_new_artifact(artifact):
-    chart_file = artifact.download()
 
 
 
