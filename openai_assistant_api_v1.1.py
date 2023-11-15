@@ -7,24 +7,39 @@
     # ERROR
 
 
-# IMPORT LIBRARIES AND SET UP API KEY
-
+# IMPORT LIBRARIES
 import os
 import e2b
 import openai
 from openai import OpenAI
 
+# SET UP API KEY
 from dotenv import load_dotenv
 import json
-
 
 load_dotenv()
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+# Pretty printing helper
+import json
+def show_json(obj):
+    print(json.loads(obj.model_dump_json()))
+
+
+client = OpenAI()
+
+assistant = client.beta.assistants.create(
+    name="Math Tutor",
+    instructions="You are a personal math tutor. Answer questions briefly, in a sentence or less.",
+    model="gpt-4-1106-preview",
+)
+show_json(assistant)
+
+
+
 
 MATH_ASSISTANT_ID = assistant.id  # or a hard-coded ID like "asst-..."
 
-client = OpenAI()
 
 def submit_message(assistant_id, thread, user_message):
     client.beta.threads.messages.create(
