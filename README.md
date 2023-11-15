@@ -4,5 +4,9 @@
 
 ## 1. Build your AI data analyst with E2B
 
-File: Data_analyst_v0.1.py
+File: data_analyst_v0.1.py
+
+## 2. Custom sandboxes with E2B
+
+File: custom_sandboxes.py
 
