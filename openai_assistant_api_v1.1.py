@@ -131,3 +131,24 @@ thread, run = create_thread_and_run(
 )
 run = wait_on_run(run, thread)
 pretty_print(get_response(thread))
+
+
+
+assistant = client.beta.assistants.retrieve("ai-developer-assistant")
+run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id=assistant.id)
+
+# Start polling the run object
+while True:
+    if run.status == "requires_action": 
+        outputs = sandbox.openai.actions.run(run) 
+        if len(outputs) > 0: 
+            client.beta.threads.runs.submit_tool_outputs( 
+                thread_id=thread.id, run_id=run.id, tool_outputs=outputs 
+            ) 
+
+    # ... handle rest of the `run` states
+
+    run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+
+# Close the sandbox once everything is done
+sandbox.close()
