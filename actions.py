@@ -19,7 +19,7 @@ from typing import Any, Dict
 
 # GUIDE -> e2b.dev/docs
 
-# 1. Import E2B and create sandbox
+# Import E2B and create sandbox
 
 import openai
 from e2b import Sandbox # $HighlightLine
@@ -30,8 +30,7 @@ sandbox = Sandbox() # $HighlightLine
 
 
 
-
-# 2. Define assistant's actions
+# Define assistant's actions
 
 def save_code_to_file(sandbox: Sandbox, args: Dict[str, Any]) -> str:
     filename = args["filename"]
