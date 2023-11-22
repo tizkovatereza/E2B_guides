@@ -1,8 +1,3 @@
-
-# In this file, we will define Python functions as a runnable actions for the AI assistant and the LLM.
-# In the main file, we use the sandbox.add_action() method to register the actions with the sandbox.
-
-
 # IMPORT LIBRARIES
 import os
 import e2b
@@ -23,10 +18,10 @@ from typing import Any, Dict
 # Import E2B and create sandbox
 
 import openai
-from e2b import Sandbox # $HighlightLine
+from e2b import Sandbox
 
 client = openai.Client()
-sandbox = Sandbox() # $HighlightLine
+sandbox = Sandbox()
 
 
 
@@ -66,23 +61,3 @@ def read_file(sandbox: Sandbox, args: Dict[str, Any]) -> str:
         return sandbox.filesystem.read(path)
     except Exception as e:
         return f"Error: {e}"
-    
-
-# def download_file(sandbox: Sandbox, args: Dict[str, Any]) -> str:
-#     path = args["path"]
-
-#     try:
-#         # Read the contents of the file from the sandbox
-#         file_content = sandbox.filesystem.read(path)
-
-#         # Extract the filename from the path
-#         filename = os.path.basename(path)
-
-#         # Write the file locally in the current working directory
-#         local_path = os.path.join(os.getcwd(), filename)
-#         with open(local_path, "w") as local_file:
-#             local_file.write(file_content)
-
-#         return f"File downloaded to local directory: {local_path}"
-#     except Exception as e:
-#         return f"Error: {e}"
