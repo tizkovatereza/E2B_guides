@@ -1,10 +1,16 @@
-# IMPORT LIBRARIES
+
+# Keep a close attention to the functions definition inside the assistant.py file.
+# We're using the Function calling feature to give our assistant the ability to call the sandbox actions we defined.
+
+
+
+# Import libraries
 import os
 import e2b
 import openai
 from openai import OpenAI
 
-# SET UP API KEY
+# Set up API key
 from dotenv import load_dotenv
 import json
 
@@ -12,7 +18,7 @@ load_dotenv()
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
-# Optional
+# Optional - import types, allowing for explicit type hints
 from typing import Any, Dict
 
 
@@ -61,9 +67,16 @@ def create_assistant():
 
     ai_developer = client.beta.assistants.create(
         instructions="""You are an AI developer.
+
     When given a coding task, write and save code to files and install any packages if needed.
-    Start by listing all files inside the repo. You work inside the home/user/repo directory.
+    Start by listing all files inside the repo. You work inside the '/home/user/repo' directory.
+
+    Please print any code that you have written to the code also to the terminal.
+
+    Then you provide step-by-step guide on how to download the resulting file from the '/home/user/repo' directory to my local directory. 
     Don't argue with me and just complete the task.
+
+    Thank you, you're the best!
     """,
         name="AI Developer",
         tools=functions,

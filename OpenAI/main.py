@@ -1,20 +1,14 @@
-# IMPORT libraries
+# Import libraries
 import os
-import openai
 
+import openai
 from openai import OpenAI
 
-# Import preferred actions from Assistants API
+# Import actions from Assistants API (we have defined them in the "actions.py")
 from actions import read_file, save_code_to_file, list_files
 
-# SET UP API KEY
+# Set up OpenAI API key
 from dotenv import load_dotenv
-
-# Define a way to show assistant's output as a json object.
-import json
-def show_json(obj):
-    print(json.loads(obj.model_dump_json()))
-
 load_dotenv()
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
@@ -34,18 +28,13 @@ from actions import read_file, save_code_to_file, list_files
 # Add action to the sandbox we created in the previous steps
 sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
 
-
-
-
+# "Call" the assistant, using its ID
 AI_ASSISTANT_ID = os.getenv("AI_ASSISTANT_ID")
+
+# Use the OpenAI API to retrieve the assistant
 assistant = client.beta.assistants.retrieve(AI_ASSISTANT_ID)
 
-
-
-# Printing assistant's output
-# show_json(assistant) # This is just to check the output of the assistant
-
-
+# Define a function to run the assistant in the E2B sandbox
 def main():
     sandbox = Sandbox()
 
@@ -62,6 +51,7 @@ def main():
         ],
     )
 
+    # Create a thread, send messages to the thread, and finally run the thread. Here, we are using the OpenAI's concept of threads and runs.
     run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id=assistant.id)
 
     while True:
@@ -99,3 +89,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    
