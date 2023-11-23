@@ -5,7 +5,7 @@ import openai
 from openai import OpenAI
 
 # Import actions from Assistants API (we have defined them in the "actions.py")
-from actions import read_file, save_code_to_file, list_files
+# from OpenAI.Guide_Without_Custom_Sandbox.actions import read_file, save_code_to_file, list_files
 
 # Set up OpenAI API key
 from dotenv import load_dotenv
@@ -23,10 +23,10 @@ client = openai.Client()
 sandbox = Sandbox()
 
 # Import our action
-from actions import read_file, save_code_to_file, list_files
+# from OpenAI.Guide_Without_Custom_Sandbox.actions import read_file, save_code_to_file, list_files
 
 # Add action to the sandbox we created in the previous steps
-sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
+# sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
 
 # "Call" the assistant, using its ID
 AI_ASSISTANT_ID = os.getenv("AI_ASSISTANT_ID")
@@ -38,7 +38,7 @@ assistant = client.beta.assistants.retrieve(AI_ASSISTANT_ID)
 def main():
     sandbox = Sandbox()
 
-    sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
+    # sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
 
     task = "Write a function that takes a list of strings and returns the longest string in the list."
 
