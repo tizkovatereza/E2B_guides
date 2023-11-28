@@ -1,9 +1,3 @@
-
-# Keep a close attention to the functions definition inside the assistant.py file.
-# We're using the Function calling feature to give our assistant the ability to call the sandbox actions we defined.
-
-
-
 # Import libraries
 import os
 import e2b
@@ -24,6 +18,7 @@ from typing import Any, Dict
 
 from typing import List
 from openai.types.beta.assistant_create_params import Tool
+
 
 def create_assistant():
     client = openai.Client()
@@ -75,3 +70,4 @@ def create_assistant():
 
 if __name__ == "__main__":
     create_assistant()
+
