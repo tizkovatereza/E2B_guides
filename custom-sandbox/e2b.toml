@@ -1,0 +1,5 @@
+# This is a config for E2B sandbox template
+
+dockerfile = "e2b.Dockerfile"
+id = "8dgsovuajw4hvajqp933"
+name = "tt-sandbox-t"

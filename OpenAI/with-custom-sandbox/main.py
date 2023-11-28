@@ -20,7 +20,7 @@ import e2b
 from e2b import Sandbox
 
 client = openai.Client()
-sandbox = Sandbox()
+sandbox = Sandbox(id="1nmphrgeuzqmtqv5dgkg")
 
 # Import our action
 # from OpenAI.Guide_Without_Custom_Sandbox.actions import read_file, save_code_to_file, list_files
@@ -36,7 +36,7 @@ assistant = client.beta.assistants.retrieve(AI_ASSISTANT_ID)
 
 # Define a function to run the assistant in the E2B sandbox
 def main():
-    sandbox = Sandbox()
+    sandbox = Sandbox(id="1nmphrgeuzqmtqv5dgkg")
 
     # sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
 
