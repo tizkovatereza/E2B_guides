@@ -5,7 +5,7 @@ import openai
 from openai import OpenAI
 
 # Import actions from Assistants API (we have defined them in the "actions.py")
-from OpenAI.Guide_Without_Custom_Sandbox.actions import read_file, save_code_to_file, list_files
+from openai.without-custom-sandbox.actions import read_file, save_code_to_file, list_files
 
 # Set up OpenAI API key
 from dotenv import load_dotenv
