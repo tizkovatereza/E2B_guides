@@ -1,28 +1,16 @@
-# IMPORT LIBRARIES
 import os
 import e2b
 import openai
-from openai import OpenAI
-
-# Set up OpenAI API key
+from e2b import Sandbox
+from typing import Any, Dict # Optional - import types, allowing for explicit type hints
 from dotenv import load_dotenv
 
 load_dotenv()
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
-
-# Optional - import types, allowing for explicit type hints
-from typing import Any, Dict
-
-
-# Import E2B and create sandbox
-
-import openai
-from e2b import Sandbox
-
+#spawn E2B sandbox
 client = openai.Client()
 sandbox = Sandbox()
-
 
 
 # Define assistant's actions
@@ -61,3 +49,4 @@ def read_file(sandbox: Sandbox, args: Dict[str, Any]) -> str:
         return sandbox.filesystem.read(path)
     except Exception as e:
         return f"Error: {e}"
+    
