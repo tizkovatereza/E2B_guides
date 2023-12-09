@@ -22,8 +22,30 @@ sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_file
 AI_ASSISTANT_ID = os.getenv("AI_ASSISTANT_ID")
 assistant = client.beta.assistants.retrieve(AI_ASSISTANT_ID)
 
+def prompt_user_for_github_repo(): #11_29
+    github_repo_url = input("Please provide the URL of your public GitHub repository: ")
+    return github_repo_url
+
+
+def clone_and_save_github_repo(sandbox, github_repo_url): #11_29
+    # Extract repository name from the URL
+    repo_name = github_repo_url.split("/")[-1].replace(".git", "")
+    local_repo_path = f"/path/to/local/repositories/{repo_name}"  # Change this to your desired local path
+
+    # Clone the GitHub repository
+    os.system(f"git clone {github_repo_url} {local_repo_path}")
+
+    # Save the local repository to the Sandbox
+    sandbox.save_local_repository(local_repo_path)
+
 def main():
     sandbox = Sandbox()
+    
+    # Prompt the user for the GitHub repository URL
+    github_repo_url = prompt_user_for_github_repo()
+
+    # Save the GitHub repository to the Sandbox
+    clone_and_save_github_repo(sandbox, github_repo_url)
 
     sandbox.add_action(read_file).add_action(save_code_to_file).add_action(list_files)
 
